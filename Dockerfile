@@ -12,6 +12,12 @@ cd Brain && \
 mvn clean package
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
+echo '** Git checkout Brain **' && \
+git clone https://github.com/owlcollab/owltools.git && \
+cd Brain && \
+mvn clean package
+
+RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout OLS_configs **' && \
 git clone https://github.com/VirtualFlyBrain/OLS_configs.git && \
 echo '** Git checkout VFB_neo4j **' && \
