@@ -6,6 +6,12 @@ RUN apt-get update --quiet --quiet \
     && rm -rf /var/lib/apt/lists/*
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
+echo '** Git checkout Brain **' && \
+git clone https://github.com/hdietze/Brain.git && \
+cd Brain && \
+mvn clean package
+
+RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout OLS_configs **' && \
 git clone https://github.com/VirtualFlyBrain/OLS_configs.git && \
 echo '** Git checkout VFB_neo4j **' && \
@@ -14,7 +20,7 @@ echo '** Git checkout VFB_owl **' && \
 git clone https://github.com/VirtualFlyBrain/VFB_owl.git && \
 cd VFB_owl && \
 find . -name '*.gz' -exec pigz -dvf '{}' \; && \
-mvn clean package && \
+mvn clean package
 
 VOLUME /data
 
