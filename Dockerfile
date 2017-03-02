@@ -2,7 +2,7 @@ FROM openjdk:8-jdk
 
 RUN apt-get update --quiet --quiet \
     && apt-get install --quiet --quiet --no-install-recommends lsof \
-    && apt-get install --quiet --quiet --no-install-recommends git maven pigz python-psycopg2 \
+    && apt-get install --quiet --quiet --no-install-recommends git maven gzip python-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH=$PATH:/opt/owltools/Golr-Client/target/:/opt/Brain/target/
@@ -27,7 +27,7 @@ git clone https://github.com/VirtualFlyBrain/VFB_neo4j.git && \
 echo '** Git checkout VFB_owl **' && \
 git clone https://github.com/VirtualFlyBrain/VFB_owl.git && \
 cd VFB_owl && \
-find . -name '*.gz' -exec pigz -dvf '{}' \; && \
+find . -name '*.gz' -exec gzip -dvf '{}' \; && \
 mvn clean package
 
 VOLUME /data
