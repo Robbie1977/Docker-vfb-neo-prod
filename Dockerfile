@@ -2,7 +2,7 @@ FROM openjdk:8-jdk
 
 RUN apt-get update --quiet --quiet \
     && apt-get install --quiet --quiet --no-install-recommends lsof \
-    && apt-get install --quiet --quiet --no-install-recommends git maven pigz\
+    && apt-get install --quiet --quiet --no-install-recommends git maven pigz python-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
