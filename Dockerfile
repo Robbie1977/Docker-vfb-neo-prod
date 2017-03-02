@@ -5,16 +5,18 @@ RUN apt-get update --quiet --quiet \
     && apt-get install --quiet --quiet --no-install-recommends git maven pigz python-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN export workspace=/opt && cd "${WORKSPACE}" && \
-echo '** Git checkout owltools **' && \
-git clone https://github.com/owlcollab/owltools.git && \
-cd owltools/OWLTools-Parent && \
-mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+ENV PATH=$PATH:/opt/owltools/Golr-Client/target/:/opt/Brain/target/
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout Brain **' && \
 git clone https://github.com/hdietze/Brain.git && \
 cd Brain && \
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+
+RUN export workspace=/opt && cd "${WORKSPACE}" && \
+echo '** Git checkout owltools **' && \
+git clone https://github.com/owlcollab/owltools.git && \
+cd owltools/OWLTools-Parent && \
 mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
