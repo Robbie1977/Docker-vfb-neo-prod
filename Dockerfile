@@ -7,11 +7,11 @@ RUN apt-get update --quiet --quiet \
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout OLS_configs **' && \
-git clone git@github.com:VirtualFlyBrain/OLS_configs.git && \
+git clone https://github.com/VirtualFlyBrain/OLS_configs.git && \
 echo '** Git checkout VFB_neo4j **' && \
-git clone git@github.com:VirtualFlyBrain/VFB_neo4j.git && \
+git clone https://github.com/VirtualFlyBrain/VFB_neo4j.git && \
 echo '** Git checkout VFB_owl **' && \
-git clone git@github.com:VirtualFlyBrain/VFB_owl.git && \
+git clone https://github.com/VirtualFlyBrain/VFB_owl.git && \
 cd VFB_owl && \
 find . -name '*.gz' -exec pigz -dvf '{}' \; && \
 mvn clean package && \
@@ -23,7 +23,7 @@ ls -s /data $HOME/.neo4j/data
 
 RUN echo '** Build OLS **' && \
 export workspace=/opt && cd "${WORKSPACE}" && \
-git clone git@github.com:EBISPOT/OLS.git && \
+git clone https://github.com/EBISPOT/OLS.git && \
 cp OLS_configs/*.properties OLS/ols-apps/ols-neo4j-app/src/main/resources/ && \
 cd OLS && \
 mvn clean package
