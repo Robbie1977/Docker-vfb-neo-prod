@@ -8,7 +8,7 @@ RUN apt-get update --quiet --quiet \
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout owltools **' && \
 git clone https://github.com/owlcollab/owltools.git && \
-cd Brain && \
+cd owltools && \
 mvn clean package
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
