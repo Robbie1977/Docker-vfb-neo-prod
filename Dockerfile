@@ -9,13 +9,13 @@ RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout owltools **' && \
 git clone https://github.com/owlcollab/owltools.git && \
 cd owltools/OWLTools-Parent && \
-mvn clean package
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout Brain **' && \
 git clone https://github.com/hdietze/Brain.git && \
 cd Brain && \
-mvn clean package
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout OLS_configs **' && \
