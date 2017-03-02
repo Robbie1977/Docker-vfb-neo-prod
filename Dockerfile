@@ -5,7 +5,7 @@ RUN apt-get update --quiet --quiet \
     && apt-get install --quiet --quiet --no-install-recommends git maven gzip python-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
 
-ENV PATH=$PATH:/opt/owltools/Golr-Client/target/:/opt/Brain/target/
+ENV PATH=$PATH:/opt/owltools/Golr-Client/target/:/opt/Brain/target/:/opt/Brain/target/classes/
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout Brain **' && \
