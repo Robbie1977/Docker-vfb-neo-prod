@@ -6,14 +6,14 @@ RUN apt-get update --quiet --quiet \
     && rm -rf /var/lib/apt/lists/*
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
-echo '** Git checkout Brain **' && \
-git clone https://github.com/hdietze/Brain.git && \
+echo '** Git checkout owltools **' && \
+git clone https://github.com/owlcollab/owltools.git && \
 cd Brain && \
 mvn clean package
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout Brain **' && \
-git clone https://github.com/owlcollab/owltools.git && \
+git clone https://github.com/hdietze/Brain.git && \
 cd Brain && \
 mvn clean package
 
