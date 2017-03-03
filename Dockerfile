@@ -5,6 +5,7 @@ RUN apt-get update --quiet --quiet \
     && apt-get install --quiet --quiet --no-install-recommends git maven gzip python-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
     
+ENV PATH=$PATH:/opt/Brain/target/
 ENV PATH=$PATH:/opt/Brain/target/classes/
 ENV PATH=$PATH:/opt/owltools/OWLTools-Core/target/classes/	
 ENV PATH=$PATH:/opt/owltools/Golr-Client/target/classes/
