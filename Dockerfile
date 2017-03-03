@@ -39,10 +39,11 @@ cd "${WORKSPACE}/Brain/" && \
 mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
 cd "${WORKSPACE}" && \
 cd "${WORKSPACE}/owltools/OWLTools-Parent" && \
-mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+
+RUN export workspace=/opt && \
 cd "${WORKSPACE}/VFB_owl/" && \
-cp "${WORKSPACE}/Brain/target/*.jar" -exec cp {} ./lib/ \; && \
-find /opt/ -name '*SNAPSHOT*.jar' | xargs cp ./lib/ && \
+find /opt/ -name '*SNAPSHOT*.jar' -exec cp {} ./lib/ \; && \
 mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
 
 VOLUME /data
