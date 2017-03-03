@@ -23,24 +23,25 @@ ENV PATH=$PATH:/opt/owltools/OWLTools-Web/target/classes/
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout Brain **' && \
 git clone https://github.com/hdietze/Brain.git && \
-cd Brain && \
-mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
-
-RUN export workspace=/opt && cd "${WORKSPACE}" && \
-echo '** Git checkout owltools **' && \
-git clone https://github.com/owlcollab/owltools.git && \
-cd owltools/OWLTools-Parent && \
-mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
-
-RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout OLS_configs **' && \
 git clone https://github.com/VirtualFlyBrain/OLS_configs.git && \
 echo '** Git checkout VFB_neo4j **' && \
 git clone https://github.com/VirtualFlyBrain/VFB_neo4j.git && \
 echo '** Git checkout VFB_owl **' && \
 git clone https://github.com/VirtualFlyBrain/VFB_owl.git && \
+echo '** Git checkout owltools **' && \
+git clone https://github.com/owlcollab/owltools.git && \
 cd VFB_owl && \
-find . -name '*.gz' -exec gzip -dvf '{}' \; && \
+find . -name '*.gz' -exec gzip -dvf '{}' \;
+
+RUN export workspace=/opt && cd "${WORKSPACE}" && \
+cd Brain && \
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+cd "${WORKSPACE}" && \
+cd owltools/OWLTools-Parent && \
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+cd "${WORKSPACE}" && \
+cd VFB_owl && \
 mvn clean package
 
 VOLUME /data
