@@ -36,10 +36,10 @@ find . -name '*.gz' -exec gzip -dvf '{}' \;
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 cd Brain && \
-mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
 cd "${WORKSPACE}" && \
 cd owltools/OWLTools-Parent && \
-mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
 cd "${WORKSPACE}" && \
 cd VFB_owl && \
 mvn clean package
