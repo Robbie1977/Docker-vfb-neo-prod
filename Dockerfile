@@ -34,14 +34,16 @@ git clone https://github.com/owlcollab/owltools.git && \
 cd VFB_owl && \
 find . -name '*.gz' -exec gzip -dvf '{}' \;
 
-RUN export workspace=/opt && cd "${WORKSPACE}" && \
-cd Brain && \
+RUN export workspace=/opt && \
+cd "${WORKSPACE}/Brain/" && \
 mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
 cd "${WORKSPACE}" && \
 cd "${WORKSPACE}/owltools/OWLTools-Parent" && \
 mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
 cd "${WORKSPACE}/VFB_owl/" && \
-mvn clean package
+cp "${WORKSPACE}/Brain/target/*.jar" -exec cp {} ./lib/ \; && \
+find /opt/ -name '*SNAPSHOT*.jar' | xargs cp ./lib/ && \
+mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package
 
 VOLUME /data
 
