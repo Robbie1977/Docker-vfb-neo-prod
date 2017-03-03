@@ -32,9 +32,7 @@ git clone https://github.com/VirtualFlyBrain/VFB_owl.git && \
 echo '** Git checkout owltools **' && \
 git clone https://github.com/owlcollab/owltools.git && \
 cd VFB_owl && \
-find . -name '*.gz' -exec gzip -dvf '{}' \;
-
-RUN export workspace=/opt && \
+find . -name '*.gz' -exec gzip -dvf '{}' \; && \
 cd "${WORKSPACE}/Brain/" && \
 mvn -Dgpg.passphrase=default99 -DskipTests=true -Dmaven.javadoc.skip=true -Dsource.skip=true clean package && \
 cd "${WORKSPACE}" && \
