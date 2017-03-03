@@ -4,8 +4,20 @@ RUN apt-get update --quiet --quiet \
     && apt-get install --quiet --quiet --no-install-recommends lsof \
     && apt-get install --quiet --quiet --no-install-recommends git maven gzip python-psycopg2 \
     && rm -rf /var/lib/apt/lists/*
-
-ENV PATH=$PATH:/opt/owltools/Golr-Client/target/:/opt/Brain/target/:/opt/Brain/target/classes/
+    
+ENV PATH=$PATH:/opt/Brain/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Core/target/classes/	
+ENV PATH=$PATH:/opt/owltools/Golr-Client/target/classes/
+ENV PATH=$PATH:/opt/owltools/Lego/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Annotation/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Core/target/classes//target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-NCBI/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Oort/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Parent/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Runner/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Sim/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Solr/target/classes/
+ENV PATH=$PATH:/opt/owltools/OWLTools-Web/target/classes/
 
 RUN export workspace=/opt && cd "${WORKSPACE}" && \
 echo '** Git checkout Brain **' && \
